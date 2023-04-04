@@ -1,0 +1,12 @@
+https://developer.monday.com/api-reference/docs/authentication
+
+https://developer.monday.com/api-reference/docs
+
+https://developer.monday.com/api-reference/docs/getting-started-1
+
+https://sptech-world.monday.com/apps/manage/10066206/app_versions/10094521/sections/appDetails
+npx @mondaydotcomorg/monday-cli@latest scaffold run ./ quickstart-integrations -s b1ee6c5a6efca46304457b1594062cba -t integration-10066206
+
+
+
+http://localhost:8302/
