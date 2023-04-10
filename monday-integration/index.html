@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquim's Monday API</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .linha {
+            display: flex;
+        }
+        .coluna {
+            width: 150px;
+            height: 90px;
+            overflow-x: scroll;
+            background-color: rgb(158, 224, 255);
+            border: 1px solid black;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monday API do Joaquim versão pública</h1>
+    <a href="./indexPrivate.html">alterar para pessoal</a>
+    
+    <h3>Definir sua chave de API do developer</h3>
+    <input type="text" id="apiKeyInput" onchange="definirChave()">
+    <br>
+    <br>
+    <button onclick="receberDados()">Pegar dados do Monday</button>
+    <br>
+
+    <div id="listas"></div>
+
+</body>
+</html>
+<script>
+    let apiKey = null
+
+    function definirChave() {
+        apiKey = document.getElementById("apiKeyInput").value
+    }
+
+    async function receberDados() {
+        if (apiKey == null) {
+            alert("chave nao definida")
+            return
+        }
+
+        const res = await fetch(`/query/monday/${apiKey}`, {
+            method: "GET"
+        })
+        .then((res) => {
+            res.json()
+            .then((res) => {
+                console.log(res)
+                document.getElementById("listas").innerHTML = ""
+                let boards = res.data.boards
+                for (let i = 0; i < boards.length; i++) {
+                    if (boards[i].name.indexOf("Subelementos de ") >= 0) {
+                        continue
+                    }
+                    document.getElementById("listas").innerHTML +=
+                    `
+                    <h3>${boards[i].name}</h3>
+                    <div id="lista${i}">
+                        <div id="linhaToplista${i}" class="linha"></div>
+                    </div>
+                    <br><br>
+                    `
+                    for (let f = 0; f < boards[i].columns.length; f++) {
+                        document.getElementById(`linhaToplista${i}`).innerHTML +=
+                        `<div class="coluna">${boards[i].columns[f].title}</div>`
+                    }
+                    for (let f = 0; f < boards[i].items.length; f++) {
+                        document.getElementById(`lista${i}`).innerHTML +=
+                        `
+                        <div id="linha${f}lista${i}" class="linha">
+                            <div class="coluna">${boards[i].items[f].name}</div>
+                        </div>
+                        `                        
+                        for (let g = 0; g < boards[i].items[f].column_values.length; g++) {
+                            document.getElementById(`linha${f}lista${i}`).innerHTML +=
+                            `<div class="coluna">${boards[i].items[f].column_values[g].value}</div>`
+                        }
+                    }
+                }
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+</script>

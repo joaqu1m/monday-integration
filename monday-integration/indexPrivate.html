@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquim's Monday API</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .linha {
+            display: flex;
+        }
+        .coluna {
+            width: 150px;
+            height: 90px;
+            overflow-x: scroll;
+            background-color: rgb(158, 224, 255);
+            border: 1px solid black;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monday API do Joaquim versão privada</h1>
+    <button onclick="receberDados()">Pegar dados do Monday</button>
+    <br>
+    <button onclick="insertBanco()">Inserir no banco</button>
+    <br>
+
+    <div id="listas"></div>
+
+</body>
+</html>
+<script>
+    let apiKey = "**********"
+    let queryAtual = []
+
+    function insertBanco() {
+        if (queryAtual.length == 0) {
+            alert("rode o programa antes")
+            return
+        } else {
+            for (i = 0; i < queryAtual.length; i++) {
+                inserir(queryAtual[i])
+            }
+        }
+    }
+
+    async function inserir(corpo) {
+        const res = await fetch("/query/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: corpo[0],
+                status: corpo[1],
+                fone: corpo[2],
+                carnesBoi: corpo[3],
+                carnesFrango: corpo[4],
+                dtVisita: corpo[5],
+                dtNascimento: corpo[6]
+            })
+        })
+        console.log(res)
+    }
+
+    async function receberDados() {
+        if (apiKey == null) {
+            alert("chave nao definida")
+            return
+        }
+
+        const res = await fetch(`/query/monday/${apiKey}`, {
+            method: "GET"
+        })
+        .then((res) => {
+            res.json()
+            .then((res) => {
+                console.log(res)
+                document.getElementById("listas").innerHTML = ""
+                let boards = res.data.boards
+                document.getElementById("listas").innerHTML +=
+                `
+                <h3>${boards[1].name}</h3>
+                <div id="lista1">
+                    <div id="linhaToplista1" class="linha"></div>
+                </div>
+                <br><br>
+                `
+                for (let f = 0; f < boards[1].columns.length; f++) {
+                    document.getElementById(`linhaToplista1`).innerHTML +=
+                    `<div class="coluna">${boards[1].columns[f].title}</div>`
+                }
+                for (let f = 0; f < boards[1].items.length; f++) {
+                    let insertAtual = [boards[1].items[f].name]
+                    document.getElementById(`lista1`).innerHTML +=
+                    `
+                    <div id="linha${f}lista1" class="linha">
+                        <div class="coluna">${boards[1].items[f].name}</div>
+                    </div>
+                    `
+                    for (let g = 0; g < boards[1].items[f].column_values.length; g++) {
+                        let itemAtual = boards[1].items[f].column_values[g].id
+                        if (itemAtual == "status") {
+                            let status = JSON.parse(itemAtual = boards[1].items[f].column_values[g].value).index
+                            if (status == 0) {
+                                insertAtual.push("lead")
+                            } else if (status == 1) {
+                                insertAtual.push("cliente")
+                            } else if (status == 2) {
+                                insertAtual.push("oportunidade")
+                            } else if (status == 5) {
+                                insertAtual.push(null)
+                            } else if (status == 7) {
+                                insertAtual.push("visitante")
+                            }
+                        } else if (itemAtual == "texto_1") {
+                            insertAtual.push(JSON.parse(itemAtual = boards[1].items[f].column_values[g].value))
+                        } else if (itemAtual == "lista_suspensa") {
+                            insertAtual.push(JSON.stringify(JSON.parse(itemAtual = boards[1].items[f].column_values[g].value).ids))
+                        } else if (itemAtual == "lista_suspensa_1") {
+                            insertAtual.push(JSON.stringify(JSON.parse(itemAtual = boards[1].items[f].column_values[g].value).ids))
+                        } else if (itemAtual == "data") {
+                            insertAtual.push(JSON.parse(itemAtual = boards[1].items[f].column_values[g].value).date)
+                        } else if (itemAtual == "data_1") {
+                            insertAtual.push(JSON.parse(itemAtual = boards[1].items[f].column_values[g].value).date)
+                        }
+                        document.getElementById(`linha${f}lista1`).innerHTML +=
+                        `<div class="coluna">${boards[1].items[f].column_values[g].value}</div>`
+                    }
+                    queryAtual.push(insertAtual)
+                }
+                console.log(queryAtual)
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+</script>
