@@ -13,18 +13,61 @@
     </body>
 </html>
 <script>
-    async function receberDados(url) {
-        const res = await fetch(`/query/pipefy/${url}`, {
+    const enviarAoBanco = true
+
+    const receberDados = (url) => {
+        fetch(`/query/pipefy/${url}`, {
             method: "GET"
         })
+        .then(res => res.json())
         .then((res) => {
-            res.json()
-            .then((res) => {
-                console.log(res)
-            })
+            let queries = res.data.allCards.edges
+            if (enviarAoBanco) {
+                for (let i = 0; i < queries.length; i++) {
+                    let queryAtual = {
+                        nome: null,
+                        email: null,
+                        empresa: null,
+                        ramo: null,
+                        fone: null
+                    }
+                    for (let f = 0; f < queries[i].node.fields.length; f++) {
+                        if (queries[i].node.fields[f].name == "Name") {
+                            queryAtual.nome = queries[i].node.fields[f].value
+                        } else if (queries[i].node.fields[f].name == "Email") {
+                            queryAtual.email = queries[i].node.fields[f].value
+                        } else if (queries[i].node.fields[f].name == "Company") {
+                            queryAtual.empresa = queries[i].node.fields[f].value
+                        } else if (queries[i].node.fields[f].name == "Company industry") {
+                            queryAtual.ramo = queries[i].node.fields[f].value
+                        } else if (queries[i].node.fields[f].name == "Phone") {
+                            queryAtual.fone = queries[i].node.fields[f].value
+                        }
+                    }
+                    enviarBanco(queryAtual)
+                }
+            }
         })
         .catch((err) => {
             console.log(err)
         })
+    }
+
+    const enviarBanco = (dados) => {
+        fetch("/query/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: dados.nome,
+                email: dados.email,
+                empresa: dados.empresa,
+                ramo: dados.ramo,
+                fone: dados.fone
+            })
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
     }
 </script>

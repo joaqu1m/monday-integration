@@ -4,9 +4,9 @@ function executar(instrucao) {
     return new Promise(function (resolve, reject) {
         var conexao = mysql.createConnection({
             host: "localhost",
-            database: "joaquim_pipefy_integration",
+            database: "testPipefy",
             user: "root",
-            password: "**********",
+            password: "***********",
         })
         conexao.connect()
         conexao.query(instrucao, function (erro, resultados) {
