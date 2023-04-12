@@ -13,4 +13,4 @@ email varchar(90),
 empresa varchar(45),
 ramo varchar(30),
 fone char(15)
-);
+)
