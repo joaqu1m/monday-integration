@@ -63,7 +63,9 @@ const campos = {
         opts: {
             "Apartamento": 1,
             "Casa": 2,
-            "Sobrado": 3
+            "Sobrado": 3,
+            "Casa Térrea": 2,
+            "Casa Sobrado": 3
         }
     },
     "Qual o tamanho da sua residência": {

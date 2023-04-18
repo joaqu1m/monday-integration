@@ -14,7 +14,6 @@ function getInsercoesBD(tipo_usuario) {
     queries.pegarInsercoes(tipo_usuario)
     .then((res) => {
         insercoesBD[tipo_usuario] = res
-        comparar(tipo_usuario)
     })
 }
 
@@ -36,12 +35,18 @@ function getInsercoesPipefy(tipo_usuario) {
     }
 }
 
+const intervaloChecagem = 30000
+
 getInsercoesBD(1)
 getInsercoesBD(2)
-setTimeout(() => {
+setInterval(() => {
     getInsercoesPipefy(1)
     getInsercoesPipefy(2)
-}, 30000)
+}, intervaloChecagem)
+setInterval(() => {
+    getInsercoesBD(1)
+    getInsercoesBD(2)
+}, intervaloChecagem*0.66)
 
 function comparar(tipo_usuario) {
     if (insercoesBD[tipo_usuario] && insercoesPipefy) {
@@ -76,7 +81,7 @@ function comparar(tipo_usuario) {
 }
 
 function compararColunas(id_cliente, tipo_usuario) {
-    queries.pegarPorId(id_cliente)
+    queries.pegarPorId(id_cliente, tipo_usuario)
     .then((res) => {
 
         if (res[0] == undefined) {
