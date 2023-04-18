@@ -62,8 +62,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Apartamento": 1,
-            "Casa Térrea": 2,
-            "Casa Sobrado": 3
+            "Casa": 2,
+            "Sobrado": 3
         }
     },
     "Qual o tamanho da sua residência": {
@@ -207,6 +207,17 @@ const campos = {
         opts: {
             "Sim": true,
             "Não": false
+        }
+    },
+    "A partir de qual canal você chegou aqui?": {
+        colunaBanco: "opt_canal",
+        formatar: null,
+        fkExterna: null,
+        opts: {
+            "Redes Sociais": 1,
+            "Pesquisa": 2,
+            "Indicação": 3,
+            "Próprio site": 4
         }
     }
 }
