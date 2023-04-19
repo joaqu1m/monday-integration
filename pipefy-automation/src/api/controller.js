@@ -35,7 +35,7 @@ function getInsercoesPipefy(tipo_usuario) {
     }
 }
 
-const intervaloChecagem = 30000
+const intervaloChecagem = 3000
 
 getInsercoesBD(1)
 getInsercoesBD(2)

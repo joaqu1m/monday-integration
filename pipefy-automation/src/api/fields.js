@@ -204,6 +204,7 @@ const campos = {
         opts: null
     },
     "Você irá divulgar seu serviço em nossa plataforma?": {
+        colunaBanco: "bln_divulgara",
         formatar: null,
         fkExterna: null,
         opts: {

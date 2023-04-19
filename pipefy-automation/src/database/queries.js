@@ -45,6 +45,7 @@ function inserir(body, tipo_usuario) {
 }
 
 function inserirAreaContratante(id, fk) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     database.executar(
         `insert into prospect_area (prospect_id, area_id) values (${id}, ${fk});`
     )
