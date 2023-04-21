@@ -60,8 +60,6 @@ function getPrestadores() {
                     }
                 } else if (colunaAtual.fkExterna) {
 
-                    console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
-
                     const valorCampoFksBruto = JSON.parse(valorCampo)
 
                     let valorCampoFks = []

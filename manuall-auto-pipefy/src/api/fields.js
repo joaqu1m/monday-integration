@@ -5,7 +5,8 @@ const campos = {
             "Lead": 2,
             "Oportunidade": 3,
             "Cliente Adquirido": 4,
-            "Cliente Perdido": 5
+            "Cliente Perdido": 5,
+            "": null
         }
     },
     "Nome Completo": {
@@ -43,7 +44,8 @@ const campos = {
             "Santo André": 4,
             "Osasco": 5,
             "Bauru": 6,
-            "Outro": 7
+            "Outro": 7,
+            "": null
         }
     },
     "Tem interesse pela nossa loja?": {
@@ -53,7 +55,8 @@ const campos = {
         opts: {
             "Sim": 1,
             "Talvez": 2,
-            "Não": 3
+            "Não": 3,
+            "": null
         }
     },
     "Você reside em:": {
@@ -65,7 +68,8 @@ const campos = {
             "Casa": 2,
             "Sobrado": 3,
             "Casa Térrea": 2,
-            "Casa Sobrado": 3
+            "Casa Sobrado": 3,
+            "": null
         }
     },
     "Qual o tamanho da sua residência": {
@@ -78,7 +82,8 @@ const campos = {
             "51m² - 70m²": 3,
             "71m² - 90m²": 4,
             "91m² - 110m²": 5,
-            "+110m²": 6
+            "+110m²": 6,
+            "": null
         }
     },
     "Você já contratou algum prestador de serviço na Manuall?": {
@@ -87,7 +92,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim": true,
-            "Não": false
+            "Não": false,
+            "": null
         }
     },
     "Tem interesse em contratar algum prestador de serviço?": {
@@ -97,7 +103,8 @@ const campos = {
         opts: {
             "Sim, estou precisando urgentemente!": 1,
             "Talvez, estou vendo.": 2,
-            "Não, não preciso de nenhum serviço.": 3
+            "Não, não preciso de nenhum serviço.": 3,
+            "": null
         }
     },
     "Qual desses serviços você está buscando?": {
@@ -119,7 +126,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim, possuo interesse.": true,
-            "Não, quero apenas contratar o prestador de serviço.": false
+            "Não, quero apenas contratar o prestador de serviço.": false,
+            "": null
         }
     },
     "Você contratou algum prestador de serviço em nossa plataforma?": {
@@ -128,7 +136,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim": true,
-            "Não": false
+            "Não": false,
+            "": null
         }
     },
     "Explique sua falta de interesse pela Manuall": {
@@ -144,7 +153,8 @@ const campos = {
         opts: {
             "Sim": 1,
             "Talvez": 2,
-            "Não": 3
+            "Não": 3,
+            "": null
         }
     },
     "Você é:": {
@@ -170,7 +180,8 @@ const campos = {
             "11 - 15 anos": 3,
             "16 - 20 anos": 4,
             "21 - 25 anos": 5,
-            "+26 anos": 6
+            "+26 anos": 6,
+            "": null
         }
     },
     "Qual a faixa do valor que você cobra pelo seu serviço? (Mínimo - Máximo)": {
@@ -185,7 +196,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim": true,
-            "Não": false
+            "Não": false,
+            "": null
         }
     },
     "Você teria interesse em ensinar um pouco sobre a sua área ao outro?": {
@@ -194,7 +206,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim, possuo interesse.": true,
-            "Não, quero apenas prestar meu serviço.": false
+            "Não, quero apenas prestar meu serviço.": false,
+            "": null
         }
     },
     "Como você cobra pelo seu serviço?": {
@@ -209,7 +222,8 @@ const campos = {
         fkExterna: null,
         opts: {
             "Sim": true,
-            "Não": false
+            "Não": false,
+            "": null
         }
     },
     "A partir de qual canal você chegou aqui?": {
@@ -220,7 +234,8 @@ const campos = {
             "Redes Sociais": 1,
             "Pesquisa": 2,
             "Indicação": 3,
-            "Próprio site": 4
+            "Próprio site": 4,
+            "": null
         }
     }
 }

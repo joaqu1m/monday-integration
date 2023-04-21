@@ -5,8 +5,8 @@ function executar(query) {
         const con = mysql.createConnection({
             host: "localhost",
             database: "mydb",
-            user: "aluno",
-            password: "sptech"
+            user: "root",
+            password: "#Gf50069451842"
         })
         con.connect()
         con.query(query, (err, res) => {

@@ -45,7 +45,6 @@ function inserir(body, tipo_usuario) {
 }
 
 function inserirAreaContratante(id, fk) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     database.executar(
         `insert into prospect_area (prospect_id, area_id) values (${id}, ${fk});`
     )
@@ -59,7 +58,6 @@ function update(body, id_cliente, tipo_usuario) {
         `update prospect set ${body.campo} = ${body.value} where id_cliente = ${id_cliente} and tipo_usuario = ${tipo_usuario}`
     )
     .then((res) => {
-        console.log("updatou")
     })
 }
 
