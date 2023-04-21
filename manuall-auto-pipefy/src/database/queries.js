@@ -39,7 +39,7 @@ function inserir(body, tipo_usuario) {
     )
     .then((res) => {
         console.log(
-            `Inserção do cliente ${body.id_cliente} como perfil ${body.status} realizada`
+            `Inserção do cliente ${body.id_cliente} no estágio ${body.status} realizada`
         )
     })
 }
@@ -49,7 +49,7 @@ function inserirAreaContratante(id, fk) {
         `insert into prospect_area (prospect_id, area_id) values (${id}, ${fk});`
     )
     .then((res) => {
-        console.log("inseriu")
+        console.log(`Cliente de id ${id} registrado na área de id ${fk}`)
     })
 }
 
@@ -57,8 +57,6 @@ function update(body, id_cliente, tipo_usuario) {
     database.executar(
         `update prospect set ${body.campo} = ${body.value} where id_cliente = ${id_cliente} and tipo_usuario = ${tipo_usuario}`
     )
-    .then((res) => {
-    })
 }
 
 module.exports = {
