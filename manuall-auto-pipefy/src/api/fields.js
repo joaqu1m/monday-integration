@@ -54,8 +54,8 @@ const campos = {
             "": null
         }
     },
-    "Já conhece a Manuall": {
-        colunaBanco: "opt_conhece_manuall",
+    "Já conhece a Manuall?": {
+        colunaBanco: "bln_conhece_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -66,7 +66,7 @@ const campos = {
     },
     // LEAD CONTRATANTE
     "Qual(is) dessas áreas de serviços você está buscando?": {
-        colunaBanco: "opt_area_servico",
+        colunaBanco: "area_id",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -77,7 +77,8 @@ const campos = {
             "Marceneiro": 5,
             "Montador": 6,
             "Gesseiro": 7,
-            "Nenhuma": 8
+            "Nenhuma": null,
+            "": null
         }
     },
     "Você teria interesse em aprender algum dos serviços citados anteriormente?": {
@@ -91,17 +92,7 @@ const campos = {
         }
     },
     "Você tem interesse pela Manuall?": {
-        colunaBanco: "opt_interesse_manuall",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim": true,
-            "Não": false,
-            "": null
-        }
-    },
-    "Você já contratou algum prestador de serviço na Manuall?": {
-        colunaBanco: "bln_ja_contratou",
+        colunaBanco: "bln_interesse_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -112,7 +103,7 @@ const campos = {
     },
     // LEAD - PRESTADOR
     "Selecione a sua área de serviço de interesse:": {
-        colunaBanco: "opt_area_servico",
+        colunaBanco: "area_id",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -123,7 +114,8 @@ const campos = {
             "Marceneiro": 5,
             "Montador": 6,
             "Gesseiro": 7,
-            "Nenhuma": 8
+            "Nenhuma": null,
+            "": null
         }
     },
     "Você teria interesse em ensinar um pouco sobre a sua área ao outro?": {
@@ -137,7 +129,7 @@ const campos = {
         }
     },
     "Você tem interesse pela Manuall?": {
-        colunaBanco: "opt_interesse_manuall",
+        colunaBanco: "bln_interesse_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -146,8 +138,8 @@ const campos = {
             "": null
         }
     },
-    "Você já divulga seu trabalho na Manuall?": {
-        colunaBanco: "bln_divulga",
+    "Você conhece alguma plataforma semelhante a Manuall?": {
+        colunaBanco: "bln_conhece_semelhante",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -158,7 +150,7 @@ const campos = {
     },
     // OPORTUNIDADE CONTRATANTE
     "Utilizou o cupom e se tornou um cliente Contratante da Manuall?": {
-        colunaBanco: "opt_cupom",
+        colunaBanco: "bln_cupom",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -169,7 +161,7 @@ const campos = {
     },
     // OPORTUNIDADE PRESTADOR
     "Utilizou o cupom e se tornou um cliente Prestador de Serviço da Manuall?": {
-        colunaBanco: "opt_cupom",
+        colunaBanco: "bln_cupom",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -179,12 +171,12 @@ const campos = {
         }
     },
     // CLIENTE PERDIDO - CONTRATANTE E PRESTADOR
-        "Explique sua falta de interesse pela Manuall": {
-            colunaBanco: "msg_desistencia",
-            formatar: null,
-            fkExterna: null,
-            opts: null
-        }
+    "Explique sua falta de interesse pela Manuall": {
+        colunaBanco: "msg_desistencia",
+        formatar: null,
+        fkExterna: null,
+        opts: null
+    }
 }
 
 module.exports = campos
