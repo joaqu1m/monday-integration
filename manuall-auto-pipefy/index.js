@@ -36,6 +36,7 @@ app.post('/desligar', (req, res) => {
     res.status(200).send("API Ociosa")
 })
 
+
 app.listen(3001, () => {
     console.log("API Ociosa")
 })

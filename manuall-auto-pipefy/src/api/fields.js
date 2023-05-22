@@ -1,11 +1,23 @@
 const campos = {
     "status": {
         opts: {
-            "Visitante": 1,
-            "Lead": 2,
-            "Oportunidade": 3,
-            "Cliente Adquirido": 4,
-            "Cliente Perdido": 5,
+            "Lead": 1,
+            "Oportunidade": 2,
+            "Cliente Adquirido": 3,
+            "Cliente Perdido": 4,
+            "": null
+        }
+    },
+    // FORMULÁRIO INICIAL - CONTRATANTE E PRESTADOR
+    "A partir de qual canal você chegou aqui?": {
+        colunaBanco: "opt_canal",
+        formatar: null,
+        fkExterna: null,
+        opts: {
+            "Redes Sociais": 1,
+            "Pesquisa": 2,
+            "Indicação": 3,
+            "Próprio site": 4,
             "": null
         }
     },
@@ -27,12 +39,6 @@ const campos = {
         fkExterna: null,
         opts: null
     },
-    "Data de nascimento": {
-        colunaBanco: "dt_nascimento",
-        formatar: "formatDate",
-        fkExterna: null,
-        opts: null
-    },
     "Você mora em:": {
         colunaBanco: "opt_cidade",
         formatar: null,
@@ -48,41 +54,49 @@ const campos = {
             "": null
         }
     },
-    "Tem interesse pela nossa loja?": {
-        colunaBanco: "opt_interesse_loja",
+    "Já conhece a Manuall": {
+        colunaBanco: "opt_conhece_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
-            "Sim": 1,
-            "Talvez": 2,
-            "Não": 3,
+            "Sim": true,
+            "Não": false,
             "": null
         }
     },
-    "Você reside em:": {
-        colunaBanco: "opt_reside",
+    // LEAD CONTRATANTE
+    "Qual(is) dessas áreas de serviços você está buscando?": {
+        colunaBanco: "opt_area_servico",
         formatar: null,
         fkExterna: null,
         opts: {
-            "Apartamento": 1,
-            "Casa": 2,
-            "Sobrado": 3,
-            "Casa Térrea": 2,
-            "Casa Sobrado": 3,
+            "Jardineiro": 1,
+            "Pintor": 2,
+            "Eletricista": 3,
+            "Encanador": 4,
+            "Marceneiro": 5,
+            "Montador": 6,
+            "Gesseiro": 7,
+            "Nenhuma": 8
+        }
+    },
+    "Você teria interesse em aprender algum dos serviços citados anteriormente?": {
+        colunaBanco: "bln_aprender",
+        formatar: null,
+        fkExterna: null,
+        opts: {
+            "Sim, possuo interesse.": true,
+            "Não, quero apenas contratar o prestador de serviço.": false,
             "": null
         }
     },
-    "Qual o tamanho da sua residência": {
-        colunaBanco: "opt_tamanho",
+    "Você tem interesse pela Manuall?": {
+        colunaBanco: "opt_interesse_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
-            "10m² - 30m²": 1,
-            "31m² - 50m²": 2,
-            "51m² - 70m²": 3,
-            "71m² - 90m²": 4,
-            "91m² - 110m²": 5,
-            "+110m²": 6,
+            "Sim": true,
+            "Não": false,
             "": null
         }
     },
@@ -96,20 +110,11 @@ const campos = {
             "": null
         }
     },
-    "Tem interesse em contratar algum prestador de serviço?": {
-        colunaBanco: "opt_contratar",
+    // LEAD - PRESTADOR
+    "Selecione a sua área de serviço de interesse:": {
+        colunaBanco: "opt_area_servico",
         formatar: null,
         fkExterna: null,
-        opts: {
-            "Sim, estou precisando urgentemente!": 1,
-            "Talvez, estou vendo.": 2,
-            "Não, não preciso de nenhum serviço.": 3,
-            "": null
-        }
-    },
-    "Qual desses serviços você está buscando?": {
-        formatar: null,
-        fkExterna: "inserirAreaContratante",
         opts: {
             "Jardineiro": 1,
             "Pintor": 2,
@@ -117,87 +122,8 @@ const campos = {
             "Encanador": 4,
             "Marceneiro": 5,
             "Montador": 6,
-            "Gesseiro": 7
-        }
-    },
-    "Você teria interesse em aprender algum dos serviços citados anteriormente?": {
-        colunaBanco: "bln_aprender",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim, possuo interesse.": true,
-            "Não, quero apenas contratar o prestador de serviço.": false,
-            "": null
-        }
-    },
-    "Você contratou algum prestador de serviço em nossa plataforma?": {
-        colunaBanco: "bln_contratou",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim": true,
-            "Não": false,
-            "": null
-        }
-    },
-    "Explique sua falta de interesse pela Manuall": {
-        colunaBanco: "msg_desistencia",
-        formatar: null,
-        fkExterna: null,
-        opts: null
-    },
-    "Tem interesse pela nossa plataforma?": {
-        colunaBanco: "opt_interesse_plat",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim": 1,
-            "Talvez": 2,
-            "Não": 3,
-            "": null
-        }
-    },
-    "Você é:": {
-        formatar: null,
-        fkExterna: "inserirAreaContratante",
-        opts: {
-            "Jardineiro": 1,
-            "Pintor": 2,
-            "Eletricista": 3,
-            "Encanador": 4,
-            "Marceneiro": 5,
-            "Montador": 6,
-            "Gesseiro": 7
-        }
-    },
-    "Quanto tempo de experiência na área?":{
-        colunaBanco: "opt_experiencia",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "0 - 5 anos": 1,
-            "6 - 10 anos": 2,
-            "11 - 15 anos": 3,
-            "16 - 20 anos": 4,
-            "21 - 25 anos": 5,
-            "+26 anos": 6,
-            "": null
-        }
-    },
-    "Qual a faixa do valor que você cobra pelo seu serviço? (Mínimo - Máximo)": {
-        colunaBanco: "faixa",
-        formatar: null,
-        fkExterna: null,
-        opts: null
-    },
-    "Você já divulga seu trabalho na Manuall?": {
-        colunaBanco: "bln_divulga",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim": true,
-            "Não": false,
-            "": null
+            "Gesseiro": 7,
+            "Nenhuma": 8
         }
     },
     "Você teria interesse em ensinar um pouco sobre a sua área ao outro?": {
@@ -210,14 +136,8 @@ const campos = {
             "": null
         }
     },
-    "Como você cobra pelo seu serviço?": {
-        colunaBanco: "como_cobra",
-        formatar: null,
-        fkExterna: null,
-        opts: null
-    },
-    "Você irá divulgar seu serviço em nossa plataforma?": {
-        colunaBanco: "bln_divulgara",
+    "Você tem interesse pela Manuall?": {
+        colunaBanco: "opt_interesse_manuall",
         formatar: null,
         fkExterna: null,
         opts: {
@@ -226,18 +146,45 @@ const campos = {
             "": null
         }
     },
-    "A partir de qual canal você chegou aqui?": {
-        colunaBanco: "opt_canal",
+    "Você já divulga seu trabalho na Manuall?": {
+        colunaBanco: "bln_divulga",
         formatar: null,
         fkExterna: null,
         opts: {
-            "Redes Sociais": 1,
-            "Pesquisa": 2,
-            "Indicação": 3,
-            "Próprio site": 4,
+            "Sim": true,
+            "Não": false,
             "": null
         }
-    }
+    },
+    // OPORTUNIDADE CONTRATANTE
+    "Utilizou o cupom e se tornou um cliente Contratante da Manuall?": {
+        colunaBanco: "opt_cupom",
+        formatar: null,
+        fkExterna: null,
+        opts: {
+            "Sim": true,
+            "Não": false,
+            "": null
+        }
+    },
+    // OPORTUNIDADE PRESTADOR
+    "Utilizou o cupom e se tornou um cliente Prestador de Serviço da Manuall?": {
+        colunaBanco: "opt_cupom",
+        formatar: null,
+        fkExterna: null,
+        opts: {
+            "Sim": true,
+            "Não": false,
+            "": null
+        }
+    },
+    // CLIENTE PERDIDO - CONTRATANTE E PRESTADOR
+        "Explique sua falta de interesse pela Manuall": {
+            colunaBanco: "msg_desistencia",
+            formatar: null,
+            fkExterna: null,
+            opts: null
+        }
 }
 
 module.exports = campos
