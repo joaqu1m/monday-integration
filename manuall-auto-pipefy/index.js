@@ -7,7 +7,7 @@ const src = require("./src/api/controller")
 const intervaloChecagem = 15000
 let intervalId1, intervalId2
 
-app.post('/ligar', (req, res) => {
+//app.post('/ligar', (req, res) => {
 
     // Cancelando os intervalos como prevenção à já estarem rodando
     clearInterval(intervalId1)
@@ -25,8 +25,8 @@ app.post('/ligar', (req, res) => {
     }, intervaloChecagem)
 
     console.log("API Rodando")
-    res.status(200).send("API Rodando")
-})
+  //  res.status(200).send("API Rodando")
+//})
 
 app.post('/desligar', (req, res) => {
     clearInterval(intervalId1)
@@ -38,5 +38,5 @@ app.post('/desligar', (req, res) => {
 
 
 app.listen(3001, () => {
-    console.log("API Ociosa")
+    //console.log("API Ociosa")
 })
