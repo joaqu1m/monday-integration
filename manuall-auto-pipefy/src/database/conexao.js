@@ -4,7 +4,7 @@ function executar(query) {
     return new Promise((resolve, reject) => {
         const con = mysql.createConnection({
             host: "localhost",
-            database: "mydb",
+            database: "manualldb",
             user: "aluno",
             password: "sptech"
         })

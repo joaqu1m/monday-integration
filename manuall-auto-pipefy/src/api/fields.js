@@ -138,16 +138,6 @@ const campos = {
             "": null
         }
     },
-    "Você conhece alguma plataforma semelhante a Manuall?": {
-        colunaBanco: "bln_conhece_semelhante",
-        formatar: null,
-        fkExterna: null,
-        opts: {
-            "Sim": true,
-            "Não": false,
-            "": null
-        }
-    },
     // OPORTUNIDADE CONTRATANTE
     "Utilizou o cupom e se tornou um cliente Contratante da Manuall?": {
         colunaBanco: "bln_cupom",
