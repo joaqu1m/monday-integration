@@ -1,6 +1,6 @@
-const database = require("./conexao")
+const database = require("./conn")
 
-function pegarInsercoes(tipo_usuario) {
+const pegarInsercoes = (tipo_usuario) => {
     return database.executar(
         `SELECT id_cliente, status FROM prospect where tipo_usuario = ${tipo_usuario}`
     )
@@ -12,15 +12,6 @@ function pegarInsercoes(tipo_usuario) {
 function pegarPorId(id_cliente, tipo_usuario) {
     return database.executar(
         `SELECT * FROM prospect WHERE id_cliente = ${id_cliente} and tipo_usuario = ${tipo_usuario}`
-    )
-    .then((res) => {
-        return res
-    })
-}
-
-function pegarPorIdFks(id, fk) {
-    return database.executar(
-        `select * from prospect_area where prospect_id = ${id} and area_id = ${fk};`
     )
     .then((res) => {
         return res
@@ -44,15 +35,6 @@ function inserir(body, tipo_usuario) {
     })
 }
 
-function inserirAreaContratante(id, fk) {
-    database.executar(
-        `insert into prospect_area (prospect_id, area_id) values (${id}, ${fk});`
-    )
-    .then((res) => {
-        console.log(`Cliente de id ${id} registrado na área de id ${fk}`)
-    })
-}
-
 function update(body, id_cliente, tipo_usuario) {
     database.executar(
         `update prospect set ${body.campo} = ${body.value} where id_cliente = ${id_cliente} and tipo_usuario = ${tipo_usuario}`
@@ -60,10 +42,8 @@ function update(body, id_cliente, tipo_usuario) {
 }
 
 module.exports = {
-    pegarInsercoes: pegarInsercoes,
-    pegarPorId: pegarPorId,
-    pegarPorIdFks: pegarPorIdFks,
-    inserir: inserir,
-    inserirAreaContratante: inserirAreaContratante,
-    update: update
+    pegarInsercoes,
+    pegarPorId,
+    inserir,
+    update,
 }

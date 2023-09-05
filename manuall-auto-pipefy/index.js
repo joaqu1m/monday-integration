@@ -1,8 +1,8 @@
-const express = require('express')
+const express = require("express")
 const app = express()
-require('dotenv').config()
+require("dotenv").config()
 
-const src = require("./src/api/controller")
+const src = require("./src/pipefy/controller")
 
 const intervaloChecagem = 15000
 let intervalId1, intervalId2

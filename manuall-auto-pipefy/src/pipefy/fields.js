@@ -1,4 +1,4 @@
-const campos = {
+module.exports = {
     "status": {
         opts: {
             "Lead": 1,
@@ -12,7 +12,6 @@ const campos = {
     "A partir de qual canal você chegou aqui?": {
         colunaBanco: "opt_canal",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Redes Sociais": 1,
             "Pesquisa": 2,
@@ -24,25 +23,21 @@ const campos = {
     "Nome Completo": {
         colunaBanco: "nome",
         formatar: null,
-        fkExterna: null,
         opts: null
     },
     "Email": {
         colunaBanco: "email",
         formatar: null,
-        fkExterna: null,
         opts: null
     },
     "Telefone": {
         colunaBanco: "fone",
         formatar: "formatCelular",
-        fkExterna: null,
         opts: null
     },
     "Você mora em:": {
         colunaBanco: "opt_cidade",
         formatar: null,
-        fkExterna: null,
         opts: {
             "São Paulo": 1,
             "São Bernardo do Campo": 2,
@@ -57,7 +52,6 @@ const campos = {
     "Já conhece a Manuall?": {
         colunaBanco: "bln_conhece_manuall",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim": true,
             "Não": false,
@@ -68,7 +62,6 @@ const campos = {
     "Qual(is) dessas áreas de serviços você está buscando?": {
         colunaBanco: "area_id",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Jardineiro": 1,
             "Pintor": 2,
@@ -84,7 +77,6 @@ const campos = {
     "Você teria interesse em aprender algum dos serviços citados anteriormente?": {
         colunaBanco: "bln_aprender",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim, possuo interesse.": true,
             "Não, quero apenas contratar o prestador de serviço.": false,
@@ -94,7 +86,6 @@ const campos = {
     "Você tem interesse pela Manuall?": {
         colunaBanco: "bln_interesse_manuall",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim": true,
             "Não": false,
@@ -105,7 +96,6 @@ const campos = {
     "Selecione a sua área de serviço de interesse:": {
         colunaBanco: "area_id",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Jardineiro": 1,
             "Pintor": 2,
@@ -121,7 +111,6 @@ const campos = {
     "Você teria interesse em ensinar um pouco sobre a sua área ao outro?": {
         colunaBanco: "bln_interesse_ensinar",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim, possuo interesse.": true,
             "Não, quero apenas prestar meu serviço.": false,
@@ -131,7 +120,6 @@ const campos = {
     "Você tem interesse pela Manuall?": {
         colunaBanco: "bln_interesse_manuall",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim": true,
             "Não": false,
@@ -142,7 +130,6 @@ const campos = {
     "Utilizou o cupom e se tornou um cliente Contratante da Manuall?": {
         colunaBanco: "bln_cupom",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim": true,
             "Não": false,
@@ -153,7 +140,6 @@ const campos = {
     "Utilizou o cupom e se tornou um cliente Prestador de Serviço da Manuall?": {
         colunaBanco: "bln_cupom",
         formatar: null,
-        fkExterna: null,
         opts: {
             "Sim": true,
             "Não": false,
@@ -164,11 +150,6 @@ const campos = {
     "Explique sua falta de interesse pela Manuall": {
         colunaBanco: "msg_desistencia",
         formatar: null,
-        fkExterna: null,
         opts: null
     }
 }
-
-// teste
-
-module.exports = campos
