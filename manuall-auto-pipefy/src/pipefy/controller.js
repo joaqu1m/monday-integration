@@ -1,10 +1,10 @@
 const queries = require("../database/queries")
 const api = require("./pipefyConn")
 
-const insercoesBD = {
-    1: null,
-    2: null
-}
+const { CONTRATANTE_ID, PRESTADOR_ID } = process.env
+
+const insercoesBD = { 1: null, 2: null }
+
 let insercoesPipefy
 
 function getInsercoesBD(tipo_usuario) {
@@ -15,7 +15,11 @@ function getInsercoesBD(tipo_usuario) {
 }
 
 function getInsercoesPipefy(tipo_usuario) {
-    api(tipo_usuario === 1 ? "303175914" : "303175891")
+    api(
+        tipo_usuario === 1
+            ? CONTRATANTE_ID
+            : PRESTADOR_ID
+    )
         .then(res => {
             insercoesPipefy = res.rows
             comparar(tipo_usuario)
