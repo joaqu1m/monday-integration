@@ -1,4 +1,4 @@
-const queries = require("../database/queries")
+const queries = require("./queries")
 const api = require("./pipefyConn")
 
 const { CONTRATANTE_ID, PRESTADOR_ID } = process.env
@@ -21,7 +21,7 @@ function getInsercoesPipefy(tipo_usuario) {
             : PRESTADOR_ID
     )
         .then(res => {
-            insercoesPipefy = res.rows
+            insercoesPipefy = res
             comparar(tipo_usuario)
         })
 }
@@ -38,23 +38,31 @@ function comparar(tipo_usuario) {
                 ) encontrou = true
             }
 
-            encontrou
-                ? compararColunas(insercoesPipefy[i], tipo_usuario)
-                : queries.inserir(insercoesPipefy[i], tipo_usuario)
+            if (encontrou)
+                compararColunas(insercoesPipefy[i], tipo_usuario)
+            else {
+                queries.inserir(insercoesPipefy[i], tipo_usuario)
+                compararColunas(insercoesPipefy[i], tipo_usuario)
+            }
         }
     }
 }
 
 function compararColunas(cliente, tipo_usuario) {
     queries.pegarPorId(cliente.id_cliente, tipo_usuario)
-    .then(res => {
+        .then(res => {
 
-        if (res[0] == undefined) return
-        
-        for (k = 0; k < cliente.colunas.length; k++) {
-            queries.update(cliente.colunas[k], cliente.id_cliente, tipo_usuario)
-        }
-    })
+            if (res[0] == undefined) return
+
+            if (cliente.status !== res[0].status) {
+                if (res[0].status < 2 && cliente.status > 1) {
+                    queries.update({ campo: "data_tornou_lead", value: Date.now() }, cliente.id_cliente, tipo_usuario)
+                }
+                for (k = 0; k < cliente.colunas.length; k++) {
+                    queries.update(cliente.colunas[k], cliente.id_cliente, tipo_usuario)
+                }
+            }
+        })
 }
 
 module.exports = {
