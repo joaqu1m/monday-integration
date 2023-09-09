@@ -1,15 +1,21 @@
 const express = require("express")
+const cors = require("cors")
 const app = express()
 require("dotenv").config()
 
+app.use(cors())
+
 const crmApi = require("./src/crm_mailer/controller")
 const pipefyApi = require("./src/pipefy/controller")
+
+let crmApiStatus = true
+let pipefyApiStatus = true
 
 // ================================
 // =        CRM MAILER API        =
 // ================================
 
-const crmIntervaloCheck = 5000
+const crmIntervaloCheck = 15000
 let crmIntervalId1
 
 const ligarCrmApi = (res) => {
@@ -17,9 +23,10 @@ const ligarCrmApi = (res) => {
     clearInterval(crmIntervalId1)
 
     crmIntervalId1 = setInterval(() => {
-        crmApi.executarNada()
+        crmApi.run()
     }, crmIntervaloCheck)
 
+    crmApiStatus = true
     console.log("API Crm Rodando")
     res?.status(200).send()
 }
@@ -27,6 +34,7 @@ const desligarCrmApi = (res) => {
 
     clearInterval(crmIntervalId1)
 
+    crmApiStatus = false
     console.log("API Crm Ociosa")
     res?.status(200).send()
 }
@@ -53,6 +61,7 @@ const ligarPipefyApi = (res) => {
         pipefyApi.getInsercoesPipefy(2)
     }, pipefyIntervaloCheck)
 
+    pipefyApiStatus = true
     console.log("API Pipefy Rodando")
     res?.status(200).send()
 }
@@ -61,6 +70,7 @@ const desligarPipefyApi = (res) => {
     clearInterval(pipefyIntervalId1)
     clearInterval(pipefyIntervalId2)
 
+    pipefyApiStatus = false
     console.log("API Pipefy Ociosa")
     res?.status(200).send()
 }
@@ -68,10 +78,12 @@ const desligarPipefyApi = (res) => {
 ligarCrmApi()
 ligarPipefyApi()
 
-app.post("/ligar/crm", (_, res) => ligarCrmApi(res))
-app.post("/desligar/crm", (_, res) => desligarCrmApi(res))
+app.post("/crm/ligar", (_, res) => ligarCrmApi(res))
+app.post("/crm/desligar", (_, res) => desligarCrmApi(res))
+app.get("/crm/checar", (_, res) => res.status(200).send(crmApiStatus))
 
-app.post("/ligar/pipefy", (_, res) => ligarPipefyApi(res))
-app.post("/desligar/pipefy", (_, res) => desligarPipefyApi(res))
+app.post("/pipefy/ligar", (_, res) => ligarPipefyApi(res))
+app.post("/pipefy/desligar", (_, res) => desligarPipefyApi(res))
+app.get("/pipefy/checar", (_, res) => res.status(200).send(pipefyApiStatus))
 
-app.listen(3001)
+app.listen(8081)
