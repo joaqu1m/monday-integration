@@ -33,10 +33,10 @@ const pegarPrestadoresMais90Dias = async () => {
         SELECT u.id, u.email
         FROM manualldb.usuario u
         INNER JOIN (
-            SELECT prestador_usuario_id, MAX(data_inicio) as ultima_solicitacao
+            SELECT prestador_id, MAX(data_inicio) as ultima_solicitacao
             FROM manualldb.solicitacao
-            GROUP BY prestador_usuario_id
-        ) s ON u.id = s.prestador_usuario_id
+            GROUP BY prestador_id
+        ) s ON u.id = s.prestador_id
         INNER JOIN (
             SELECT usuario_id, MAX(inicio_contato) as ultimo_contato
             FROM manualldb.crm_log
@@ -68,7 +68,7 @@ const pegarPrestadoresAtivos = async () => {
         (
             SELECT COUNT(*)
             FROM manualldb.solicitacao s
-            WHERE s.prestador_usuario_id = u.id
+            WHERE s.prestador_id = u.id
             AND s.data_inicio > DATE_SUB(NOW(), INTERVAL 30 DAY)
         ) >= 18
         AND cl.id IS NULL

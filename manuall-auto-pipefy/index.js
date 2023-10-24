@@ -5,8 +5,8 @@ require("dotenv").config()
 
 app.use(cors())
 
-const crmApi = require("./src/crm_mailer/controller")
-const pipefyApi = require("./src/pipefy/controller")
+const crmApi = require("./src/crmRoutine/controller")
+const pipefyApi = require("./src/pipefyRoutine/controller")
 
 let crmApiStatus = true
 let pipefyApiStatus = true
